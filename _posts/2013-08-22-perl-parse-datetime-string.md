@@ -15,26 +15,26 @@ Convert STRING to Time::Piece object using the specified FORMAT:
 
     Time::Piece->strptime(STRING, FORMAT);
 
-```perl
-use warnings;
-use strict;
-use 5.010;
+Example:
 
-use Time::Piece;
+    use warnings;
+    use strict;
+    use 5.010;
 
-my $string = '3/20/2013/3:48:26';
+    use Time::Piece;
 
-my $t = Time::Piece->strptime($string, "%m/%d/%Y/%H:%M:%S");
+    my $string = '3/20/2013/3:48:26';
 
-# seconds since the epoch
-say $t->epoch;
+    my $t = Time::Piece->strptime($string, "%m/%d/%Y/%H:%M:%S");
 
-# seconds
-say $t->sec;
+    # seconds since the epoch
+    say $t->epoch;
 
-# minutes
-say $t->min;
+    # seconds
+    say $t->sec;
 
-```
+    # minutes
+    say $t->min;
 
-[1] http://search.cpan.org/~rjbs/Time-Piece-1.22/Piece.pm
+
+[1]: http://search.cpan.org/~rjbs/Time-Piece-1.22/Piece.pm
