@@ -18,25 +18,26 @@
         <title>{{ site.title }}</title>
     {% endif %}
 
+    <title>hlin.github.io by hlin</title>
   </head>
 
   <body>
+
     <header>
-      <div class="inner">
-        <a href="/"><h1>{{ site.title }}</h1></a>
-        <h2>personal blog based on github pages</h2>
+      <div class="container">
+        <h1>hlin.github.io</h1>
+        <h2></h2>
+
+        <section id="downloads">
+          <a href="https://github.com/hlin" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
       </div>
     </header>
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
+    <div class="container">
+      <section id="main_content">
         {{ content }}
-        </section>
-
-        {% include sidebar.html %}
-
-      </div>
+      </section>
     </div>
 
   </body>
