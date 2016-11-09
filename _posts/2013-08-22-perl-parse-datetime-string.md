@@ -13,28 +13,32 @@ will still return what you expect.
 
 Convert STRING to Time::Piece object using the specified FORMAT:
 
-    Time::Piece->strptime(STRING, FORMAT);
+```perl
+Time::Piece->strptime(STRING, FORMAT);
+```
 
 Example:
 
-    use warnings;
-    use strict;
-    use 5.010;
+```perl
+use warnings;
+use strict;
+use 5.010;
 
-    use Time::Piece;
+use Time::Piece;
 
-    my $string = '3/20/2013/3:48:26';
+my $string = '3/20/2013/3:48:26';
 
-    my $t = Time::Piece->strptime($string, "%m/%d/%Y/%H:%M:%S");
+my $t = Time::Piece->strptime($string, "%m/%d/%Y/%H:%M:%S");
 
-    # seconds since the epoch
-    say $t->epoch;
+# seconds since the epoch
+say $t->epoch;
 
-    # seconds
-    say $t->sec;
+# seconds
+say $t->sec;
 
-    # minutes
-    say $t->min;
+# minutes
+say $t->min;
+```
 
 
 [1]: http://search.cpan.org/~rjbs/Time-Piece-1.22/Piece.pm
