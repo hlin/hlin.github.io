@@ -1,7 +1,7 @@
 ---
 layout: post
 title: HTML::Mason syntax
-date: 2013-07-18 14:55:09
+date: 2013-07-18 14:55:09 +0800
 ---
 
 ### <%init> </%init>

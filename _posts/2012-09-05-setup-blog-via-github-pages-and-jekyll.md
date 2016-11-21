@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  setup blog via github pages & Jekyll
-date:   2012-09-05 14:22:03
+date:   2012-09-05 14:22:03 +0800
 ---
 
 - setup github pages, ref <http://pages.github.com/>

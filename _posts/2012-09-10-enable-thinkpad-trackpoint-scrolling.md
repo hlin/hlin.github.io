@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Enable thinkpad trackpoint scrolling on RHEL6/7
-date:   2012-09-10 13:41:10
+date:   2012-09-10 13:41:10 +0800
 ---
 
 ### Use `xinput` command to find the trackpoint device name

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: install raspbian in raspberry pi 2 using NOOBS
-date: 2016-08-20 21:16:10
+date: 2016-08-20 21:16:10 +0800
 ---
 
 Download NOOBS(New Out Of Box Software)

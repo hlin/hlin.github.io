@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Show group members in Django admin site
-date: 2016-11-16 11:29:19
+date: 2016-11-16 11:29:19 +0800
 ---
 
 Django's admin site is very helpful but it's not convenient enough in some cases.

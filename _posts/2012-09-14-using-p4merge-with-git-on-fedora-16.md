@@ -1,7 +1,7 @@
 ---
 layout: post
 title: using p4merge with git on fedora 16
-date: 2012-09-14 15:00:12
+date: 2012-09-14 15:00:12 +0800
 ---
 
 [p4merge][1] is Perforce Visual Merge and Diff Tools. download [p4v.tgz][2] for linux.

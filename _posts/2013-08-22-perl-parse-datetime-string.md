@@ -1,7 +1,7 @@
 ---
 layout: post
 title: parse datetime string via Time::Piece
-date: 2013-08-22 15:00:12
+date: 2013-08-22 15:00:12 +0800
 ---
 
 [Time::Piece][1] becomes core module since perl v5.9.5

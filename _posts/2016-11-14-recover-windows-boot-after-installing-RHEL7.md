@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Recover windows boot menu in grub2 after installing RHEL7
-date: 2016-11-14 22:17:13
+date: 2016-11-14 22:17:13 +0800
 ---
 
 After installing RHEL7.3, Windows 10 disappeared from the grup boot menu.
