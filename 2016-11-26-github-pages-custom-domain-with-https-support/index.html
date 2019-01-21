@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Github pages custom domain with https support // My Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.53" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Hypo Lin" />
+    <meta name="description" content="" />
+    <base href="https://hlin.github.io/" />
+    <link rel="stylesheet" href="https://hlin.github.io/css/main.min.89370bfdd636611d7283523dbb885b5a6137cf1749d5503e069b06f5cc55f5bb.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.jpg" /></a>
+      <h1>My Site</h1>
+      <p> </p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/hlin"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Github pages custom domain with https support</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          Nov 26, 2016
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          1 min read
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+          </div>
+      </div>
+    </header>
+    <div class="post-content">
+      
+
+<h2 id="tl-dr">TL;DR</h2>
+
+<ul>
+<li>Must have a VPS and a domain name</li>
+<li>Make sure your domain name pointing to your VPS&rsquo; IP</li>
+<li>Apply ssl cert from Let’s Encrypt</li>
+<li>Config nginx</li>
+</ul>
+
+<h2 id="apply-ssl-cert-from-let-s-encrypt">Apply ssl cert from Let’s Encrypt</h2>
+
+<p>We will use <a href="https://certbot.eff.org/">certbot</a> to apply ssl cert from <a href="https://letsencrypt.org/">Let&rsquo;s Encrypt</a>.
+For CentOS/RHEL7, <code>certbot</code> is available in EPEL.</p>
+
+<pre><code class="language-shell">$ sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+$ sudo yum install certbot
+</code></pre>
+
+<p>Apply cert for my domain hypo.name</p>
+
+<pre><code class="language-shell">$ sudo certbot certonly --standalone -d hypo.name
+</code></pre>
+
+<p>The cert files will be saved in directory <code>/etc/letsencrypt/live/hypo.name/</code> (read <a href="http://letsencrypt.readthedocs.io/en/latest/using.html#where-are-my-certificates">letsencrypt doc</a> for more details).</p>
+
+<h2 id="config-nginx">Config nginx</h2>
+
+<p>Install nginx</p>
+
+<pre><code class="language-shell">$ sudo yum install nginx
+$ sudo systemctl enable nginx
+</code></pre>
+
+<p>Add configuration file <code>/etc/nginx/conf.d/hypo.name.conf</code> with following contents</p>
+
+<pre><code>server {
+    listen 80;
+    server_name hypo.name;
+    return 301 https://$server_name$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name hypo.name;
+    ssl_certificate /etc/letsencrypt/live/hypo.name/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/hypo.name/privkey.pem;
+    location / {
+        proxy_pass https://hlin.github.io;
+        proxy_redirect off;
+    }
+}
+</code></pre>
+
+<p>Restart nginx</p>
+
+<pre><code class="language-shell">$ sudo systemctl restart nginx
+</code></pre>
+
+<h2 id="renew-cert-automatically">Renew cert automatically</h2>
+
+<p>Let&rsquo;s Encrypt certs will expire in 90 days, so will use crontab to renew it automatically.</p>
+
+<pre><code class="language-shell">$ sudo crontab -e
+0 0 1 * * certbot renew --pre-hook &quot;systemctl stop nginx&quot; --post-hook &quot;systemctl start nginx&quot; --quiet
+</code></pre>
+
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

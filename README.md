@@ -1,3 +1,3 @@
-simple blog system based on github pages & jekyll
-=================================================
+My personal blog site build on hugo
+===================================
 

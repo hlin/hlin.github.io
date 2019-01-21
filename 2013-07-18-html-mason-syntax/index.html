@@ -1,0 +1,202 @@
+<!doctype html>
+<html>
+  <head>
+    <title>HTML::Mason syntax // My Site</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.53" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Hypo Lin" />
+    <meta name="description" content="" />
+    <base href="https://hlin.github.io/" />
+    <link rel="stylesheet" href="https://hlin.github.io/css/main.min.89370bfdd636611d7283523dbb885b5a6137cf1749d5503e069b06f5cc55f5bb.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.jpg" /></a>
+      <h1>My Site</h1>
+      <p> </p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/hlin"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">HTML::Mason syntax</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          Jul 18, 2013
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          4 min read
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+          </div>
+      </div>
+    </header>
+    <div class="post-content">
+      
+
+<h3 id="init-init">&lt;%init&gt; &lt;/%init&gt;</h3>
+
+<p>This section contains initialization code that executes as soon as the component is called.
+Technically an &lt;%init&gt; block is equivalent to a &lt;%perl&gt; block at the beginning of the component.</p>
+
+<p>Example:</p>
+
+<pre><code class="language-perl">&lt;%init&gt;
+# Fetch article from database
+my $dbh = DBI::connect ...;
+my $sth = $dbh-&gt;prepare(&quot;select * from articles where id = ?&quot;);
+$sth-&gt;execute($article_id);
+my ($headline, $date, $author, $body) = $sth-&gt;fetchrow_array;
+# Massage the fields
+$headline = uc($headline);
+my ($year, $month, $day) = split('-', $date);
+$date = &quot;$month/$day&quot;;
+&lt;/%init&gt;
+</code></pre>
+
+<h3 id="cleanup-cleanup">&lt;%cleanup&gt; &lt;/%cleanup&gt;</h3>
+
+<p>This section contains cleanup code that executes just before the component exits.
+A &lt;%cleanup&gt; block is equivalent to a &lt;%perl&gt; block at the end of the component.</p>
+
+<h3 id="args-args">&lt;%args&gt; &lt;/%args&gt;</h3>
+
+<p>Declared named arguments.</p>
+
+<p>Example:</p>
+
+<pre><code class="language-perl">&lt;%args&gt;
+$a
+@b       # a comment
+%c
+
+# another comment
+$d =&gt; 5
+$e =&gt; $d*2
+@f =&gt; ('foo', 'baz')
+%g =&gt; (joe =&gt; 1, bob =&gt; 2)
+&lt;/%args&gt;
+</code></pre>
+
+<h3 id="toc_3">%</h3>
+
+<p>Most useful for conditional and loop structures - if, while, foreach, , etc. - as well as side-effect commands like assignments. To improve readability, always put a space after the &lsquo;%&rsquo;. Examples:</p>
+
+<pre><code class="language-perl"># Conditional code
+% my $ua = $r-&gt;header_in('User-Agent');
+% if ($ua =~ /msie/i) {
+Welcome, Internet Explorer users
+...
+% } elsif ($ua =~ /mozilla/i) {
+Welcome, Netscape users
+...
+% }
+
+# Loop code
+&lt;ul&gt;
+% foreach $item (@list) {
+&lt;li&gt;&lt;% $item %&gt;&lt;/li&gt;
+% }
+&lt;/ul&gt;
+</code></pre>
+
+<h3 id="xxx">&lt;% xxx %&gt;</h3>
+
+<p>Most useful for printing out variables, as well as more complex expressions. To improve readability, always separate the tag and expression with spaces. Examples:</p>
+
+<pre><code>Dear &lt;% $name %&gt;: We will come to your house at &lt;% $address %&gt; in the
+fair city of &lt;% $city %&gt; to deliver your $&lt;% $amount %&gt; dollar prize!
+
+The answer is &lt;% ($y+8) % 2 %&gt;.
+
+You are &lt;% $age &lt; 18 ? 'not' : '' %&gt; permitted to enter this site.
+</code></pre>
+
+<h3 id="perl-xxx-perl">&lt;%perl&gt; xxx &lt;/%perl&gt;</h3>
+
+<p>Useful for Perl blocks of more than a few lines.</p>
+
+<pre><code class="language-perl">&lt;%perl&gt;
+my @array = qw/1..10/;
+foreach my $v (@array){
+    say $v;
+}
+&lt;/%perl&gt;
+</code></pre>
+
+<h3 id="comp-path-name-value">&lt;&amp; comp_path, [name=&gt;value, &hellip;] &amp;&gt;</h3>
+
+<p>To call one component from another.</p>
+
+<p>comp_path:
+The component path. With a leading &lsquo;/&rsquo;, the path is relative to the component root (comp_root). Otherwise, it is relative to the location of the calling component.
+comp_path could be a literal string (quotes optional) or a Perl expression that evaluates to a string.</p>
+
+<p>name =&gt; value pairs:
+Parameters are passed as one or more name =&gt; value pairs, e.g. player =&gt; &rsquo;M. Jordan&rsquo;.</p>
+
+<p>Examples:</p>
+
+<pre><code class="language-perl"># relative component paths
+&lt;&amp; topimage &amp;&gt;
+&lt;&amp; tools/searchbox &amp;&gt;
+
+# absolute component path
+&lt;&amp; /shared/masthead, color=&gt;'salmon' &amp;&gt;
+
+# this component path MUST have quotes because it contains a comma
+&lt;&amp; &quot;sugar,eggs&quot;, mix=&gt;1 &amp;&gt;
+
+# variable component path
+&lt;&amp; $comp &amp;&gt;
+
+# variable component and arguments
+&lt;&amp; $comp, %args &amp;&gt;
+
+# you can use arbitrary expression for component path, but it cannot
+# begin with a letter or number; delimit with () to remedy this
+&lt;&amp; (int(rand(2)) ? 'thiscomp' : 'thatcomp'), id=&gt;123 &amp;&gt;
+</code></pre>
+
+<h3 id="comp-path-name-value-xxx">&lt;&amp;| comp_path, [name=&gt;value, &hellip;] &amp;&gt; xxx &lt;/&amp;&gt;</h3>
+
+<p>Components can be used to filter part of the page&rsquo;s content using an extended component syntax.</p>
+
+<p>The filtering component can be called in all the same ways a normal component is called, with arguments and so forth. The only difference between a filtering component and a normal component is that a filtering component is expected to fetch the content by calling $m-&gt;content and do something with it.</p>
+
+<p>Here is an example of a component used for localization. Its content is a series of strings in different languages, and it selects the correct one based on a global $lang variable, which could be setup in a site-level autohandler.</p>
+
+<pre><code class="language-perl">&lt;&amp;| /i18n/itext &amp;&gt;
+   &lt;en&gt;Hello, &lt;% $name %&gt; This is a string in English&lt;/en&gt;
+   &lt;de&gt;Schoene Gruesse, &lt;% $name %&gt;, diese Worte sind auf Deutsch&lt;/de&gt;
+   &lt;pig&gt;ellohay &lt;% substr($name,2).substr($name,1,1).'ay' %&gt;,
+   isthay isay igpay atinlay&lt;/pig&gt;
+&lt;/&amp;&gt;
+</code></pre>
+
+<p>Here is the /i18n/itext component:</p>
+
+<pre><code class="language-perl">&lt;% $text %&gt;
+
+&lt;%init&gt;
+# this assumes $lang is a global variable which has been set up earlier.
+local $_ = $m-&gt;content;
+my ($text) = m{&lt;$lang&gt;(.*?)&lt;/$lang&gt;};
+&lt;/%init&gt;
+</code></pre>
+
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

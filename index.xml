@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My Site</title>
+    <link>https://hlin.github.io/</link>
+    <description>Recent content on My Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 26 Nov 2016 22:52:55 +0800</lastBuildDate>
+    
+	<atom:link href="https://hlin.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Github pages custom domain with https support</title>
+      <link>https://hlin.github.io/2016-11-26-github-pages-custom-domain-with-https-support/</link>
+      <pubDate>Sat, 26 Nov 2016 22:52:55 +0800</pubDate>
+      
+      <guid>https://hlin.github.io/2016-11-26-github-pages-custom-domain-with-https-support/</guid>
+      <description>TL;DR  Must have a VPS and a domain name Make sure your domain name pointing to your VPS&amp;rsquo; IP Apply ssl cert from Let’s Encrypt Config nginx  Apply ssl cert from Let’s Encrypt We will use certbot to apply ssl cert from Let&amp;rsquo;s Encrypt. For CentOS/RHEL7, certbot is available in EPEL.
+$ sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm $ sudo yum install certbot  Apply cert for my domain hypo.</description>
+    </item>
+    
+    <item>
+      <title>Show group members in Django admin site</title>
+      <link>https://hlin.github.io/2016-11-16-show-group-members-in-django-admin-site/</link>
+      <pubDate>Wed, 16 Nov 2016 11:29:19 +0800</pubDate>
+      
+      <guid>https://hlin.github.io/2016-11-16-show-group-members-in-django-admin-site/</guid>
+      <description>Django&amp;rsquo;s admin site is very helpful but it&amp;rsquo;s not convenient enough in some cases. For example, when you want to add several users to a group, you have to edit each user one by one and you can not see group members in group detail page. Create a file named admin.py with following contents can solve these problems(tested with Django 1.10).
+# -*- coding: utf-8 -*- from django.contrib import admin from django.</description>
+    </item>
+    
+    <item>
+      <title>Recover windows boot menu in grub2 after installing RHEL7</title>
+      <link>https://hlin.github.io/2016-11-14-recover-windows-boot-after-installing-rhel7/</link>
+      <pubDate>Mon, 14 Nov 2016 22:17:13 +0800</pubDate>
+      
+      <guid>https://hlin.github.io/2016-11-14-recover-windows-boot-after-installing-rhel7/</guid>
+      <description>After installing RHEL7.3, Windows 10 disappeared from the grup boot menu. It&amp;rsquo;s easy to recover it by following steps.
+ Enable EPEL repo  $ sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm   Install ntfs-3g  $ sudo yum install ntfs-3g   Regenerate grub.cfg  $ sudo cp /boot/grub2/grub.cfg /boot/grub2/grub.cfg.old $ sudo grub2-mkconfig -o /boot/grub2/grub.cfg  </description>
+    </item>
+    
+    <item>
+      <title>Install raspbian in raspberry pi 2 using NOOBS</title>
+      <link>https://hlin.github.io/2016-08-20-install-raspbian-in-raspberry-pi-2/</link>
+      <pubDate>Sat, 20 Aug 2016 21:16:10 +0800</pubDate>
+      
+      <guid>https://hlin.github.io/2016-08-20-install-raspbian-in-raspberry-pi-2/</guid>
+      <description>Download NOOBS(New Out Of Box Software)
+Format SD card which is no less than 4GB as FAT32
+Unzip the downloaded NOOBS(e.g NOOBS_v1_9_2.zip) to the root dir of the SD card
+Power up PI
+Select the system to install.</description>
+    </item>
+    
+    <item>
+      <title>Custom PS1 for perlbrew</title>
+      <link>https://hlin.github.io/2013-11-25-custom-ps1-for-perlbrew/</link>
+      <pubDate>Mon, 25 Nov 2013 13:38:13 +0800</pubDate>
+      
+      <guid>https://hlin.github.io/2013-11-25-custom-ps1-for-perlbrew/</guid>
+      <description>Add following code to ~/.bashrc, then run source ~/.bashrc
+__perlbrew_ps1() { if hash perlbrew; then local v=&amp;quot;$( perlbrew list | perl -lane&#39;print $F[1] if /^\*/&#39; )&amp;quot; if [[ -n &amp;quot;$v&amp;quot; ]]; then printf &amp;quot;${1:- (%s)}&amp;quot; $v fi fi } PS1=&#39;[\u@\h$(__perlbrew_ps1) \W$]\$ &#39;  Your PS1 will looks like:
+[hlin@desktop-hlin (perl-5.10.1) ~]$  </description>
+    </item>
+    
+    <item>
+      <title>pmtools - a suite of small programs to help manage modules</title>
+      <link>https://hlin.github.io/2013-09-04-pmtools/</link>
+      <pubDate>Wed, 04 Sep 2013 17:05:12 +0800</pubDate>
+      
+      <guid>https://hlin.github.io/2013-09-04-pmtools/</guid>
+      <description>Install pmtools $ cpanm Devel::Loaded # or $ cpan i Devel::Loaded  Commands # print out pod paths for the standard perl manpages $ basepods # print out pod paths for the standard perl faqs $ faqpods # print out paths for the standard modules $ modpods # grep out function definitions from perlfunc $ pfgrep # show what files a perl program loads at compile time $ plxload # show all installed versions and descs $ pmall # show a module&#39;s man page $ pman # page through a module file $ pmcat # check that Perl is set up correctly for Perl modules $ pmcheck # print out version and whatis description of perl modules $ pmdesc # print out module directories $ pmdirs # show a Perl class&#39;s methods $ pmeth # show a module&#39;s exports $ pmexp # cat out a function from a module $ pmfunc # find modules whose names match this pattern $ pminst # show what files a given module loads at compile time $ pmload # long list the module path $ pmls # show full path to a perl module $ pmpath # print out a module&#39;s version $ pmvers # grep in pod sections only $ podgrep # print the path to the pod $ podpath # print out all pod paths $ pods # show outline of pods $ podtoc # print out the paths to the modules that this site added $ sitepods # print out the paths to the modules that came with Perl $ stdpods  Reference:  http://search.</description>
+    </item>
+    
+    <item>
+      <title>Parse datetime string via Time::Piece</title>
+      <link>https://hlin.github.io/2013-08-22-perl-parse-datetime-string/</link>
+      <pubDate>Thu, 22 Aug 2013 15:00:12 +0800</pubDate>
+      
+      <guid>https://hlin.github.io/2013-08-22-perl-parse-datetime-string/</guid>
+      <description>Time::Piece becomes core module since perl v5.9.5
+This module replaces the standard localtime and gmtime functions with implementations that return objects. It does so in a backwards compatible manner, so that using localtime/gmtime in the way documented in perlfunc will still return what you expect.
+Convert STRING to Time::Piece object using the specified FORMAT:
+Time::Piece-&amp;gt;strptime(STRING, FORMAT);  Example:
+use warnings; use strict; use 5.010; use Time::Piece; my $string = &#39;3/20/2013/3:48:26&#39;; my $t = Time::Piece-&amp;gt;strptime($string, &amp;quot;%m/%d/%Y/%H:%M:%S&amp;quot;); # seconds since the epoch say $t-&amp;gt;epoch; # seconds say $t-&amp;gt;sec; # minutes say $t-&amp;gt;min;  </description>
+    </item>
+    
+    <item>
+      <title>HTML::Mason syntax</title>
+      <link>https://hlin.github.io/2013-07-18-html-mason-syntax/</link>
+      <pubDate>Thu, 18 Jul 2013 14:55:09 +0800</pubDate>
+      
+      <guid>https://hlin.github.io/2013-07-18-html-mason-syntax/</guid>
+      <description>&amp;lt;%init&amp;gt; &amp;lt;/%init&amp;gt; This section contains initialization code that executes as soon as the component is called. Technically an &amp;lt;%init&amp;gt; block is equivalent to a &amp;lt;%perl&amp;gt; block at the beginning of the component.
+Example:
+&amp;lt;%init&amp;gt; # Fetch article from database my $dbh = DBI::connect ...; my $sth = $dbh-&amp;gt;prepare(&amp;quot;select * from articles where id = ?&amp;quot;); $sth-&amp;gt;execute($article_id); my ($headline, $date, $author, $body) = $sth-&amp;gt;fetchrow_array; # Massage the fields $headline = uc($headline); my ($year, $month, $day) = split(&#39;-&#39;, $date); $date = &amp;quot;$month/$day&amp;quot;; &amp;lt;/%init&amp;gt;  &amp;lt;%cleanup&amp;gt; &amp;lt;/%cleanup&amp;gt; This section contains cleanup code that executes just before the component exits.</description>
+    </item>
+    
+    <item>
+      <title>Using p4merge with git on fedora 16</title>
+      <link>https://hlin.github.io/2012-09-14-using-p4merge-with-git-on-fedora-16/</link>
+      <pubDate>Fri, 14 Sep 2012 15:00:12 +0800</pubDate>
+      
+      <guid>https://hlin.github.io/2012-09-14-using-p4merge-with-git-on-fedora-16/</guid>
+      <description> p4merge is Perforce Visual Merge and Diff Tools. download p4v.tgz for linux.
+install p4merge tar zxf p4v.tgz sudo mv p4v-2012.1.500245/lib/p4v/ /lib/ sudo mv p4v-2012.1.500245/bin/p4merge* /bin/  config git add following lines into ~/.gitconfig
+[diff] tool = p4merge [difftool &amp;quot;p4merge&amp;quot;] cmd = p4merge \\\&amp;quot;$LOCAL\\\&amp;quot; \\\&amp;quot;$REMOTE\\\&amp;quot; [merge] tool = p4merge [mergetool &amp;quot;p4merge&amp;quot;] cmd = p4merge \\\&amp;quot;$BASE\\\&amp;quot; \\\&amp;quot;$LOCAL\\\&amp;quot; \\\&amp;quot;$REMOTE\\\&amp;quot; \\\&amp;quot;$MERGED\\\&amp;quot;  </description>
+    </item>
+    
+    <item>
+      <title>Enable thinkpad trackpoint scrolling on RHEL6/7</title>
+      <link>https://hlin.github.io/2012-09-10-enable-thinkpad-trackpoint-scrolling/</link>
+      <pubDate>Mon, 10 Sep 2012 13:41:10 +0800</pubDate>
+      
+      <guid>https://hlin.github.io/2012-09-10-enable-thinkpad-trackpoint-scrolling/</guid>
+      <description>Use xinput command to find the trackpoint device name $ xinput  Create file /etc/X11/xorg.conf.d/10-thinkpad-trackpad-scroll.conf with following content. Note: The string after MatchProduct should be the trackpoint device name found in previous step.
+Section &amp;quot;InputClass&amp;quot; Identifier &amp;quot;Trackpoint Wheel Emulation&amp;quot; MatchProduct &amp;quot;TPPS/2 IBM TrackPoint&amp;quot; MatchDevicePath &amp;quot;/dev/input/event*&amp;quot; Option &amp;quot;EmulateWheel&amp;quot; &amp;quot;true&amp;quot; Option &amp;quot;EmulateWheelButton&amp;quot; &amp;quot;2&amp;quot; Option &amp;quot;Emulate3Buttons&amp;quot; &amp;quot;false&amp;quot; Option &amp;quot;XAxisMapping&amp;quot; &amp;quot;6 7&amp;quot; Option &amp;quot;YAxisMapping&amp;quot; &amp;quot;4 5&amp;quot; EndSection  Restart your computer Reference: - http://www.</description>
+    </item>
+    
+    <item>
+      <title>Setup blog via github pages &amp; Jekyll</title>
+      <link>https://hlin.github.io/2012-09-05-setup-blog-via-github-pages-and-jekyll/</link>
+      <pubDate>Wed, 05 Sep 2012 14:22:03 +0800</pubDate>
+      
+      <guid>https://hlin.github.io/2012-09-05-setup-blog-via-github-pages-and-jekyll/</guid>
+      <description> setup github pages, ref http://pages.github.com/ config jekyll, ref https://github.com/mojombo/jekyll  </description>
+    </item>
+    
+  </channel>
+</rss>
